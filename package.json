@@ -1,0 +1,11 @@
+{
+  "name": "fanza-search-result-player",
+  "version": "1.0.0",
+  "description": "The player in search result page of FANZA.",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "soarflat",
+  "license": "MIT"
+}
