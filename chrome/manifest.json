@@ -1,0 +1,13 @@
+{
+  "name": "FANZA SEATCH RESULT PLAYER",
+  "description": "The player in search result page of FANZA.",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "icons": {},
+  "content_scripts": [
+    {
+      "matches": ["https://www.dmm.co.jp/search/=/searchstr=*"],
+      "js": ["build/player.js"]
+    }
+  ]
+}
