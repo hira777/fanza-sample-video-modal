@@ -71,7 +71,7 @@ const vm = new Vue({
   },
   template: `<div id="fanza-video-modal">
               <fanza-modal :visible.sync="visible" :item-link="itemLink" :title="title">
-                <fanza-video ref="fanzaVideo" :src="videoSrc" :bitRates="bitRates"></fanza-video>
+                <fanza-video ref="fanzaVideo" :src="videoSrc" :bitRates="bitRates" :playerState="playerState"></fanza-video>
               </fanza-modal>
             </div>`
 });
