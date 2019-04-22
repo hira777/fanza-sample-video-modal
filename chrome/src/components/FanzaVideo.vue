@@ -15,7 +15,12 @@
     <vue-slider
       v-model="progress"
       :duration="0"
+      :height="12"
+      :dot-size="15"
+      :contained="true"
       tooltip="none"
+      :process-style="{ backgroundColor: '#00a6fe' }"
+      :rail-style="{ backgroundColor: '#0e0e0e' }"
       style="margin: 0 auto;"
       @change="handleSliderChange"
     ></vue-slider>
