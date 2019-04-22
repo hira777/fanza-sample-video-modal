@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .fanza-modal-fade-enter,
 .fanza-modal-fade-leave-active {
   opacity: 0;
@@ -79,10 +79,10 @@ export default {
   font-size: 20px !important;
   text-decoration: underline !important;
   transition: color 0.07s ease-in-out !important;
-}
 
-.fanza-modal-item-link:hover {
-  color: #bbb !important;
-  text-decoration: none;
+  &:hover {
+    color: #bbb !important;
+    text-decoration: none;
+  }
 }
 </style>

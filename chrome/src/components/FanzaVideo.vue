@@ -178,62 +178,47 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .fanza-video {
   color: #fff;
-}
-.fanza-video video {
-  margin: 0;
-  padding: 0;
-  width: 560px;
-  height: auto;
-}
 
-.fanza-video-control {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  position: relative;
-  color: #fff;
-}
+  video {
+    margin: 0;
+    padding: 0;
+    width: 560px;
+    height: auto;
+  }
 
-.fanza-video-second--left {
-  position: absolute;
-  top: 11px;
-  left: 232px;
-  font-size: 10px;
-  pointer-events: none;
-}
+  .fanza-video-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    position: relative;
+    color: #fff;
+  }
 
-.fanza-video-second--right {
-  position: absolute;
-  top: 11px;
-  right: 233px;
-  font-size: 10px;
-  pointer-events: none;
-}
+  .fanza-video-button {
+    width: 48px;
+    opacity: 0.8;
+    cursor: pointer;
 
-.fanza-video-button {
-  width: 48px;
-  opacity: 0.8;
-  cursor: pointer;
-}
+    &.fanza-video-button--play,
+    &.fanza-video-button--pause {
+      margin: 0 10px;
+    }
 
-.fanza-video-button img {
-  width: 100%;
-}
+    &:hover {
+      opacity: 1;
+    }
 
-.fanza-video-button.fanza-video-button--play,
-.fanza-video-button.fanza-video-button--pause {
-  margin: 0 10px;
-}
+    img {
+      width: 100%;
+    }
+  }
 
-.fanza-video-button:hover {
-  opacity: 1;
-}
-
-.fanza-video-time {
-  text-align: center;
+  .fanza-video-time {
+    text-align: center;
+  }
 }
 </style>
