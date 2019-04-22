@@ -22,34 +22,28 @@
       {{ timeDisplay }}
     </div>
     <div class="fanza-video-control">
-      <span class="fanza-video-second--left">10</span>
-      <font-awesome-icon
-        :icon="['fas', 'undo-alt']"
-        size="2x"
-        class="fanza-video-button "
-        @click="backward10Seconds"
-      />
-      <font-awesome-icon
+      <div role="button" class="fanza-video-button" @click="backward10Seconds">
+        <img src="@/images/forward_10.png" />
+      </div>
+      <div
         v-show="!isPlaying"
-        :icon="['far', 'play-circle']"
-        size="3x"
+        role="button"
         class="fanza-video-button fanza-video-button--play"
         @click="play"
-      />
-      <font-awesome-icon
+      >
+        <img src="@/images/play_circle.png" />
+      </div>
+      <div
         v-show="isPlaying"
-        :icon="['far', 'pause-circle']"
-        size="3x"
+        role="button"
         class="fanza-video-button fanza-video-button--pause"
         @click="pause"
-      />
-      <font-awesome-icon
-        :icon="['fas', 'redo-alt']"
-        size="2x"
-        class="fanza-video-button"
-        @click="forward10Seconds"
-      />
-      <span class="fanza-video-second--right">10</span>
+      >
+        <img src="@/images/pause_circle.png" />
+      </div>
+      <div role="button" class="fanza-video-button" @click="forward10Seconds">
+        <img src="@/images/replay_10.png" />
+      </div>
     </div>
   </div>
 </template>
@@ -57,6 +51,18 @@
 <script>
 import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
+
+export const PLAYER_STATE = {
+  PLAYING: 'PLAYING',
+  PAUSED: 'PAUSED'
+};
+
+export const BIT_RATES = {
+  '300': '300',
+  '1000': '1000',
+  '1500': '1500'
+};
+
 export default {
   name: 'FanzaVideo',
   components: {
@@ -70,6 +76,10 @@ export default {
     bitRates: {
       type: Object,
       default: () => {}
+    },
+    playerState: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -99,6 +109,10 @@ export default {
     progressPercentage(v) {
       if (this.progress === v) return;
       this.progress = v;
+    },
+    playerState(v) {
+      if (v === PLAYER_STATE.PLAYING && !this.isPlaying) this.play();
+      if (v === PLAYER_STATE.PAUSED && this.isPlaying) this.pause();
     }
   },
   mounted() {
@@ -116,10 +130,12 @@ export default {
     play() {
       if (this.isPlaying) return;
       this.$refs.video.play();
+      this.isPlaying = true;
     },
     pause() {
       if (!this.isPlaying) return;
       this.$refs.video.pause();
+      this.isPlaying = false;
     },
     forward10Seconds() {
       const nextTime = this.currentTime + 10;
@@ -195,9 +211,13 @@ export default {
 }
 
 .fanza-video-button {
-  color: #fff;
-  opacity: 0.7;
+  width: 48px;
+  opacity: 0.8;
   cursor: pointer;
+}
+
+.fanza-video-button img {
+  width: 100%;
 }
 
 .fanza-video-button.fanza-video-button--play,

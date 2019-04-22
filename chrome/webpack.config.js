@@ -23,11 +23,23 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['vue-style-loader', 'css-loader']
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
       }
     ]
   },
   resolve: {
     alias: {
+      '@': path.resolve(__dirname, 'src'),
       vue$: 'vue/dist/vue.esm.js'
     }
   },

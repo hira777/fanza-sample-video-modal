@@ -1,22 +1,13 @@
 import Vue from 'vue';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faPlayCircle,
-  faPauseCircle
-} from '@fortawesome/free-regular-svg-icons';
-import { faUndoAlt, faRedoAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-import { $ } from './utils/dom';
-import keyBy from './utils/keyBy';
-import idsWithNoSampleMovie from './idsWithNoSampleMovie';
-import { BIT_RATES } from './enums';
-import FanzaModal from './components/FanzaModal.vue';
-import FanzaVideo from './components/FanzaVideo.vue';
-
-library.add(faPlayCircle, faPauseCircle, faUndoAlt, faRedoAlt);
-
-Vue.component('font-awesome-icon', FontAwesomeIcon);
+import { $ } from '@/utils/dom';
+import keyBy from '@/utils/keyBy';
+import idsWithNoSampleMovie from '@/idsWithNoSampleMovie';
+import FanzaModal from '@/components/FanzaModal.vue';
+import FanzaVideo, {
+  PLAYER_STATE,
+  BIT_RATES
+} from '@/components/FanzaVideo.vue';
 
 function createSampleButton() {
   const $sampleButton = document.createElement('p');
@@ -49,20 +40,16 @@ const vm = new Vue({
     return {
       videoSrc: '',
       bitRates: {},
+      playerState: PLAYER_STATE.PAUSED,
       title: '',
       itemLink: '',
       visible: false
     };
   },
-  computed: {
-    player() {
-      return this.$refs.fanzaVideo.player;
-    }
-  },
   watch: {
     visible(value) {
       if (!value) {
-        this.player.pause();
+        this.playerState = PLAYER_STATE.PAUSED;
       }
     }
   },
@@ -78,6 +65,7 @@ const vm = new Vue({
     },
     openVideo() {
       this.videoSrc = this.bitRates[BIT_RATES['1000']].src;
+      this.playerState = PLAYER_STATE.PLAYING;
       this.visible = true;
     }
   },
