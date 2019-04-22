@@ -65,7 +65,6 @@ const vm = new Vue({
     },
     openVideo() {
       this.videoSrc = this.bitRates[BIT_RATES['1000']].src;
-      this.playerState = PLAYER_STATE.PLAYING;
       this.visible = true;
     }
   },

@@ -8,6 +8,7 @@
       @loadstart="hanleLoadStart"
       @canplaythrough="handleCanplayThrough"
       @play="handlePlay"
+      @playing="handlePlaying"
       @pause="handlePause"
       @timeupdate="handleTimeUpdate"
     ></video>
@@ -128,7 +129,7 @@ export default {
       this.player = this;
     },
     play() {
-      if (this.isPlaying) return;
+      if (this.isPlaying || !this.$refs.video) return;
       this.$refs.video.play();
       this.isPlaying = true;
     },
@@ -148,11 +149,14 @@ export default {
     handlePlay() {
       this.isPlaying = true;
     },
+    handlePlaying() {
+      this.isPlaying = true;
+    },
     handlePause() {
       this.isPlaying = false;
     },
     handleTimeUpdate() {
-      if (this.isLoading || typeof this.$refs.video === 'undefined') return;
+      if (this.isLoading || !this.$refs.video) return;
       this.currentTime = Math.floor(this.$refs.video.currentTime);
     },
     hanleLoadStart() {
