@@ -1,66 +1,13 @@
-import Vue from 'vue';
-
 import { $ } from '@/utils/dom';
 import keyBy from '@/utils/keyBy';
 import createSampleButton from '@/utils/createSampleButton';
 import getCid from '@/utils/getCid';
+import createFanzaSampleVideoModalVM from '@/utils/createFanzaSampleVideoModalVM';
 import idsWithNoSampleMovie from '@/idsWithNoSampleMovie';
-import FanzaModal from '@/components/FanzaModal.vue';
-import FanzaVideo, {
-  PLAYER_STATE,
-  BIT_RATES
-} from '@/components/FanzaVideo.vue';
 
-document.body.insertAdjacentHTML(
-  'beforeend',
-  '<div id="fanza-video-modal"></div>'
-);
-
-const vm = new Vue({
-  el: '#fanza-video-modal',
-  components: {
-    FanzaVideo,
-    FanzaModal
-  },
-  data() {
-    return {
-      videoSrc: '',
-      bitRates: {},
-      playerState: PLAYER_STATE.PAUSED,
-      title: '',
-      itemLink: '',
-      visible: false
-    };
-  },
-  watch: {
-    visible(value) {
-      if (!value) {
-        this.playerState = PLAYER_STATE.PAUSED;
-      }
-    }
-  },
-  methods: {
-    setBitRates(bitRates) {
-      this.bitRates = { ...bitRates };
-    },
-    setTitle(title) {
-      this.title = title;
-    },
-    setItemLink(itemLink) {
-      this.itemLink = itemLink;
-    },
-    openVideo() {
-      this.videoSrc = this.bitRates[BIT_RATES['1000']].src;
-      this.visible = true;
-      this.playerState = PLAYER_STATE.PLAYING;
-    }
-  },
-  template: `<div id="fanza-video-modal">
-              <fanza-modal :visible.sync="visible" :item-link="itemLink" :title="title">
-                <fanza-video ref="fanzaVideo" :src="videoSrc" :bitRates="bitRates" :playerState="playerState"></fanza-video>
-              </fanza-modal>
-            </div>`
-});
+const id = 'fanza-sample-video-modal';
+document.body.insertAdjacentHTML('beforeend', `<div id="${id}"></div>`);
+const vm = createFanzaSampleVideoModalVM({ el: `#${id}` });
 
 [...$('#list').querySelectorAll('li')].forEach(itemEl => {
   const cid = getCid({ el: itemEl });
