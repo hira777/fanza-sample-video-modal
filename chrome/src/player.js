@@ -2,28 +2,14 @@ import Vue from 'vue';
 
 import { $ } from '@/utils/dom';
 import keyBy from '@/utils/keyBy';
+import createSampleButton from '@/utils/createSampleButton';
+import getCid from '@/utils/getCid';
 import idsWithNoSampleMovie from '@/idsWithNoSampleMovie';
 import FanzaModal from '@/components/FanzaModal.vue';
 import FanzaVideo, {
   PLAYER_STATE,
   BIT_RATES
 } from '@/components/FanzaVideo.vue';
-
-function createSampleButton() {
-  const $sampleButton = document.createElement('p');
-  $sampleButton.setAttribute('class', 'sample');
-  $sampleButton.innerHTML =
-    '<a href><span class="btn-sample"><span></span></span></a>';
-  return $sampleButton;
-}
-
-function getCid({ el }) {
-  const itemUrl = el
-    .querySelector('.tmb')
-    .querySelector('a')
-    .getAttribute('href');
-  return itemUrl.match(/(?<=cid=)[\w-]+/g)[0];
-}
 
 document.body.insertAdjacentHTML(
   'beforeend',
