@@ -66,6 +66,7 @@ const vm = new Vue({
     openVideo() {
       this.videoSrc = this.bitRates[BIT_RATES['1000']].src;
       this.visible = true;
+      this.playerState = PLAYER_STATE.PLAYING;
     }
   },
   template: `<div id="fanza-video-modal">
