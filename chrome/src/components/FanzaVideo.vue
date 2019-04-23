@@ -29,7 +29,7 @@
     </div>
     <div class="fanza-video-control">
       <div role="button" class="fanza-video-button" @click="backward10Seconds">
-        <img src="@/images/forward_10.png" />
+        <img src="@/assets/images/forward_10.png" />
       </div>
       <div
         v-show="!isPlaying"
@@ -37,7 +37,7 @@
         class="fanza-video-button fanza-video-button--play"
         @click="play"
       >
-        <img src="@/images/play_circle.png" />
+        <img src="@/assets/images/play_circle.png" />
       </div>
       <div
         v-show="isPlaying"
@@ -45,10 +45,10 @@
         class="fanza-video-button fanza-video-button--pause"
         @click="pause"
       >
-        <img src="@/images/pause_circle.png" />
+        <img src="@/assets/images/pause_circle.png" />
       </div>
       <div role="button" class="fanza-video-button" @click="forward10Seconds">
-        <img src="@/images/replay_10.png" />
+        <img src="@/assets/images/replay_10.png" />
       </div>
     </div>
   </div>
